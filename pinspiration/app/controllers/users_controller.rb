@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_action :authenticate
+  
   def index
     @users = User.all
   end
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       username: params[:username],
-      password_digest: params[:password],
+      password_digest: BCrypt::Password.create(params[:password])
 
     )
     if params[:password_confirmation] != params[:password]
@@ -35,10 +37,12 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if !@user
       message = "This user doesn't exist!"
-    elsif @user.password_digest != params[:password]
+    elsif !BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
       message = "Your password's wrong!"
     else
       message = "You're signed in, #{@user.username}!"
+      cookies[:username] = @user.username
+      session[:user] = @user
     end
     puts message
     flash[:notice] = message
@@ -48,6 +52,7 @@ class UsersController < ApplicationController
   def sign_out
     message = "You're signed out!"
     flash[:notice] = message
+    reset_session
     redirect_to root_url
   end
 

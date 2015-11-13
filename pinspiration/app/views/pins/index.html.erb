@@ -1,1 +1,10 @@
-<h1> all pins </h1>
+
+
+<ul>
+  <% @pins.each do |pin| %>
+    <li>
+      <%= link_to pin.title, user_pins_path %>
+        <%= link_to pin.user.name, pin.user %>
+    </li>
+  <% end %>
+</ul>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'users#index'
+  root 'pins#index'
 
   get 'pins', to: 'pins#index'
   # Example of regular route:

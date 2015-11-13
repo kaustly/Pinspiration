@@ -1,0 +1,12 @@
+<p>
+  <strong>User:</strong>
+  <%= @user.name %>
+</p>
+
+
+
+<%= link_to 'edit', edit_user_path(@user) %> |
+<%= link_to 'back to users', users_path %> |
+<%= link_to 'delete', user_path(@user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>

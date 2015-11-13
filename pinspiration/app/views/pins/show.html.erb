@@ -1,0 +1,14 @@
+<p>
+  <strong>Pin:</strong>
+  <%= @pin.title %>
+  <img src= "<%= @pin.image_url %>">
+
+</p>
+
+
+
+<%= link_to 'edit', edit_pin_path(@pin) %> |
+<%= link_to 'back to pins', pins_path %> |
+<%= link_to 'delete', pin_path(@pin),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>

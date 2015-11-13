@@ -1,0 +1,32 @@
+<h2>create pin</h2>
+<%= form_for @pin do |f| %>
+
+  <% if @pin.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@pin.errors.count, "error") %> prohibited
+        this pin account from being saved:
+      </h2>
+      <ul>
+        <% @pin.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :image_url %><br>
+    <%= f.text_field :image_url %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

@@ -1,8 +1,10 @@
+<h1>pins
+<%= link_to "(+)", new_pin_path %></h1>
+
 <% @pins.each do |pin| %>
   <li>
-      <%= link_to pin,  %>">
-      <%= user.name %>
-    </a>
+      <%= link_to pin.title, pin_path(pin) %>
+
   </li>
 <% end %>
 </ul>
